@@ -1,0 +1,27 @@
+{
+  "name": "synecdoche",
+  "description": "Railway - Synecdoche EP",
+  "version": "1.0.0",
+  "author": "Jonathan Koh <jonathanvkoh@gmail.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "server.js"
+  },
+  "engines": {
+    "node": ">= 0.8.0",
+    "npm": "1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jvkoh/synecdoche"
+  },
+  "dependencies": {
+    "express": "2.5.x",
+    "jquery": "1.6.x",
+  },
+  "subdomain": "railway",
+  "domains": [
+    "railway.fm",
+    "www.railway.fm"
+  ]
+}
