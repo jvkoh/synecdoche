@@ -1,0 +1,57 @@
+@font-face {
+    font-family: OstrichSans;
+    src: url( ../fonts/OstrichSans-Black.otf );
+    font-weight:400;
+}
+
+body {
+	font-family: OstrichSans, Sans-Serif;
+	background: #000;
+}
+
+
+#content-wrapper {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+	border: 15px #4D5EAA solid;
+	background: #FFF7EE;
+}
+
+#mid-circle {
+	border-radius: 50%;
+    position: absolute;
+	background: #000;
+    z-index: 4;
+}
+
+#page-title {
+    text-align: center;
+    z-index: 3;
+}
+
+.song {
+    position: absolute;
+    font-size: 42px;
+    text-align: center;
+    z-index: 1;
+}
+
+.progress {
+    position: absolute;
+	background-color: #4D5EAA;
+    z-index: 2;
+    height: 100%;
+}
+
+.left-song {
+    left: 0;
+}
+
+.song-text {
+    display: block;
+    top: 10px;
+    position: relative;
+    z-index: 3;
+}
+
