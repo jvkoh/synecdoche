@@ -10,38 +10,32 @@ body {
 }
 
 a { text-decoration: none; color: #4D5EAA; }
+a:hover { text-decoration: underline; color: black; }
 
 #content-wrapper {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-	border: 15px #4D5EAA solid;
+    width: 95%;
+    margin: 10px auto;
+	border: 10px #4D5EAA solid;
 	background: #FFF7EE;
 }
 
 #liner-notes {
-	border-radius: 50%;
-    position: absolute;
-	background: #000;
-    z-index: 4;
-    overflow: hidden;
-}
-
-#liner-notes-text {
-	color: #FFF7EE;
-    padding: 115px 100px;
-    position: absolute;
+    padding: 15px;
     text-align: center;
+    color: #FFF7EE;
+    background: black;
 }
 
 #page-title {
     text-align: center;
-    z-index: 3;
+    font-size: 28px;
+    padding: 15px 0;
 }
 
 .song {
-    position: absolute;
-    font-size: 42px;
+    position: relative;
+    left: 0;
+    font-size: 20px;
     text-align: center;
     z-index: 1;
     cursor: pointer;
@@ -54,24 +48,23 @@ a { text-decoration: none; color: #4D5EAA; }
     height: 100%;
 }
 
-.left-song {
-    left: 0;
-}
-
 .song-text {
+    padding: 10px 0;
     display: block;
-    top: 10px;
-    position: relative;
     z-index: 3;
 }
 
 #buttons-container {
-    position: absolute;
     text-align: center;
-    width: 100%;
+    padding: 15px 0;
+}
+
+a.picture-link:hover {
+    text-decoration: none;
 }
 
 .picture-button {
-    padding: 0 20px;
-    position: relative;
+    padding: 0 10px;
+    width: 50px;
+    height: 50px;
 }

@@ -1,7 +1,7 @@
-var express = require('express');
+var express = require('express'),
+    ejs = require('ejs'),
+    device  = require('express-device');
 var app = express();
-var device = require('express-device');
-var ejs = require('ejs');
 
 app.configure(function(){
     app.set('view engine', 'ejs');
@@ -10,6 +10,8 @@ app.configure(function(){
 
     app.use(express.bodyParser());
     app.use(device.capture());
+
+    app.enableViewRouting();
 
     app.use(express.static(__dirname + '/public/'));
 });
