@@ -1,11 +1,11 @@
 // Global Variables
-var gWrapper, midCircle, circleSize, expCircleSize, songs, buttons, bWrapper, linerText;
+var gWrapper, midCircle, circleSize, expCircleSize, songs, buttons, bWrapper, linerText, linerLabel, bWidth, bHeight;
 
 //===========================================
 // Resizes the whole page to fit the window
 //===========================================
 function resizeBody() {
-    var bWidth, bHeight, songsWidth, songsHeight, titleHeight;
+    var songsWidth, songsHeight, titleHeight;
 
     // Main Block dimensions
     bWidth = $(window).width() - 70;
@@ -34,36 +34,36 @@ function resizeBody() {
         left: songsWidth
     });
 
-    songs.each( function() {
-        $(this).css({
-            'font-size': ($(this).height()/5) + 'px'
-        });
+    songs.css({
+        fontSize: (songsHeight/5),
     });
 
     titleHeight = bHeight/6;
     $('#page-title').css( {
-        'height': (titleHeight*5/6) + 'px',
-        'font-size': (titleHeight*2/3) + 'px',
-        'padding-top': (titleHeight/6) + 'px'
+        height: (titleHeight*5/6),
+        fontSize: (titleHeight*2/3),
+        paddingTop: (titleHeight/6)
     });
 
     bWrapper.css( {
-        'height': titleHeight + 'px',
-        'top': (titleHeight*5) + 'px',
+        height: titleHeight,
+        top: (titleHeight*5),
     });
 
     buttons.css( {
-        'height': (titleHeight*2/3) + 'px',
-        'width': (titleHeight*2/3) + 'px',
-        'top': (titleHeight/6) + 'px' ,
+        height: (titleHeight*2/3),
+        width: (titleHeight*2/3),
+        top: (titleHeight/6) ,
     });
 
     $('.song-text').each( function() {
-        $(this).css({
-            top: (songsHeight - $(this).height())/2
-        });
+        $(this).css( "top", (songsHeight - $(this).height())/2 );
     });
 
+    linerLabel.css({
+        top: (bHeight - linerLabel.height())/2,
+        left: (bWidth - linerLabel.width())/2
+    });
 
     repositionCircle();
 }
@@ -75,24 +75,23 @@ function resizeBody() {
 function repositionCircle() {
     var bWidth, bHeight, cDiameter, setTop, setLeft, diff;
 
-    bWidth = $(window).width();
-    bHeight = $(window).height();
+    bWidth = $(window).width() - 70;
+    bHeight = $(window).height() - 70;
 
     cDiameter = midCircle.width();
-    setTop = (bHeight - 70 - cDiameter)/2;
-    setLeft = (bWidth - 70 - cDiameter)/2;
+    setTop = (bHeight - cDiameter)/2;
+    setLeft = (bWidth - cDiameter)/2;
 
     midCircle.css({
-        top: setTop + 'px',
-        left: setLeft + 'px'
+        top: setTop,
+        left: setLeft
     });
 
-    diff = (expCircleSize - circleSize)/2;
+    diff = (expCircleSize - cDiameter)/2;
 
     linerText.css({
-        top: -diff + 'px',
-        left: -diff + 'px',
-        width: expCircleSize - 200
+        top: -diff,
+        left: -diff,
     });
 }
 
@@ -101,10 +100,17 @@ function repositionCircle() {
 //===========================================
 function initPage() {
     midCircle.css({
-        height: circleSize + 'px',
-        width: circleSize + 'px',
+        height: circleSize,
+        width: circleSize,
     });
+
+    linerText.hide();
+    linerText.css({
+        width: expCircleSize - 200,
+    });
+
     resizeBody();
+    setTimeout( resizeBody , 50 );
 }
 
 
@@ -115,31 +121,42 @@ function circleToggle() {
     var circleOff;
     circleOff = (expCircleSize - circleSize)/2;
 
-    if( midCircle.hasClass('expanded') )
+    if( !midCircle.hasClass('locked') )
     {
-        midCircle.removeClass('expanded');
-        midCircle.animate({
-            height: circleSize + 'px',
-            width: circleSize + 'px',
-            top: '+=' + circleOff + 'px',
-            left: '+=' + circleOff + 'px'
-        }, 1000);
-        linerText.animate({
-            top: 0-circleOff + 'px',
-            left: 0-circleOff + 'px'
-        }, 1000);
-    } else {
-        midCircle.addClass('expanded');
-        midCircle.animate({
-            height: expCircleSize + 'px',
-            width: expCircleSize + 'px',
-            top: '-=' + circleOff + 'px',
-            left: '-=' + circleOff + 'px'
-        }, 1000);
-        linerText.animate({
-            top: 0,
-            left: 0
-        }, 1000);
+        midCircle.addClass('locked');
+
+        if( midCircle.hasClass('expanded') )
+        {
+            midCircle.animate({
+                height: circleSize,
+                width: circleSize,
+                top: (bHeight - circleSize)/2,
+                left: (bWidth - circleSize)/2
+            }, 1000);
+            linerText.animate({
+                top: 0-circleOff,
+                left: 0-circleOff,
+            }, 1000);
+            setTimeout( function(){ linerText.fadeOut(500); }, 1000);
+            setTimeout( function(){ linerLabel.fadeIn(500); }, 1500);
+            midCircle.removeClass('expanded');
+        } else {
+            midCircle.animate({
+                height: expCircleSize,
+                width: expCircleSize,
+                top: (bHeight - expCircleSize)/2,
+                left: (bWidth - expCircleSize)/2
+            }, 1000);
+            linerText.animate({
+                top: 0,
+                left: 0,
+            }, 1000);
+            setTimeout( function(){ linerLabel.fadeOut(500); }, 1000);
+            setTimeout( function(){ linerText.fadeIn(500); }, 1500);
+            midCircle.addClass('expanded');
+        }
+
+        setTimeout( function(){ midCircle.removeClass('locked'); }, 2100);
     }
 }
 
@@ -154,6 +171,9 @@ $(document).ready( function() {
     buttons = $('.picture-button');
     bWrapper = $('#buttons-container');
     linerText = $('#liner-notes-text');
+    linerLabel = $('#liner-notes-label');
+    bWidth = $(window).width() - 70;
+    bHeight = $(window).height() - 70;
     circleSize = 200;
     expCircleSize = 600;
 

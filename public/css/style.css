@@ -7,9 +7,17 @@
 body {
 	font-family: OstrichSans, Sans-Serif;
 	background: #000;
+    margin:0;
+    padding: 0;
 }
 
 a { text-decoration: none; color: #4D5EAA; }
+
+#global-wrapper {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
 
 #content-wrapper {
     position: absolute;
@@ -32,6 +40,14 @@ a { text-decoration: none; color: #4D5EAA; }
     padding: 115px 100px;
     position: absolute;
     text-align: center;
+}
+
+#liner-notes-label {
+    font-size: 28px;
+	color: #FFF7EE;
+    position: absolute;
+    text-align: center;
+    z-index: 5;
 }
 
 #page-title {

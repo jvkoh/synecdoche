@@ -49,6 +49,7 @@ a:hover { text-decoration: underline; color: black; }
 }
 
 .song-text {
+    position: relative;
     padding: 10px 0;
     display: block;
     z-index: 3;

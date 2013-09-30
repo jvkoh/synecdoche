@@ -11,8 +11,10 @@ function initJPlayer( num , file ) {
         },
         cssSelectorAncestor: '#jp_container_' + num,
         supplied: 'mp3',
-        swfPath: '/js/libs',
+        swfPath: "swf/Jplayer.swf",
         volume: 1,
+        wmode:"window",
+        solution: "html,flash",
     });
 }
 
