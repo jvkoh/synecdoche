@@ -35,6 +35,10 @@ a:hover {
 	background: #FFF7EE;
 }
 
+#circle-container {
+    cursor: pointer;
+}
+
 #liner-notes {
 	border-radius: 50%;
     position: absolute;

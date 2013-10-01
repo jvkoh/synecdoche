@@ -60,6 +60,7 @@ function resizeBody() {
         $(this).css( "top", (songsHeight - $(this).height())/2 );
     });
 
+
     linerLabel.css({
         top: (bHeight - linerLabel.height())/2,
         left: (bWidth - linerLabel.width())/2
@@ -109,8 +110,11 @@ function initPage() {
         width: expCircleSize - 200,
     });
 
+    linerLabel.css({
+        width: circleSize,
+    });
+
     resizeBody();
-    setTimeout( resizeBody , 200 );
 }
 
 
@@ -183,6 +187,6 @@ $(document).ready( function() {
     $(window).resize( resizeBody );
 
     // When they click the circle, toggle the circle
-	midCircle.click( circleToggle );
+	$('#circle-container').click( circleToggle );
 
 });
