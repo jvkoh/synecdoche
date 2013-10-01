@@ -110,7 +110,7 @@ function initPage() {
     });
 
     resizeBody();
-    setTimeout( resizeBody , 50 );
+    setTimeout( resizeBody , 200 );
 }
 
 
