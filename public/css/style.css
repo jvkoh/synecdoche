@@ -13,6 +13,14 @@ body {
 
 a { text-decoration: none; color: #4D5EAA; }
 
+a img {
+  border: none;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
 #global-wrapper {
     margin: 0;
     width: 100%;
